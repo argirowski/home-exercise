@@ -1,14 +1,14 @@
 .main {
 	width: 80%;
 	margin: 20px auto;
-	border: 20px solid #bdc3c7;
+	border: 20px solid rgb(102, 105, 112);
 	padding: 20px;
 	max-width: 700px;
 }
 
 .date {
 	text-transform: uppercase;
-	color: #4542f4;
+	color: rgb(4, 47, 147);
 	font-weight: 800;
 	letter-spacing: 0.2rem;
 }
@@ -16,11 +16,11 @@
 h2 {
 	 font-size: 2.0rem;
   	font-weight: bold;
-	color: #1c19c6;
+	color: rgb(214, 38, 19);
 }
 
 .border {
-	border-left: 5px solid grey;
+	border-left: 5px solid rgb(102, 105, 112);
 	padding-left: 5px;
 }
 
