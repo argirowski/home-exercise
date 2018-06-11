@@ -50,6 +50,10 @@ li {
 	margin-left: 15px;
 }
 
+ li:first-child {
+	border-style: none;
+}
+
 section {
 	background-color: rgb(229, 6, 203);
 	width: 900px;
@@ -88,7 +92,8 @@ h2 {
 }
 
 a {
-	padding-left: 50px;
+	padding-left: 35px;
+	padding-right: 35px;
 }
 
 .vtor-article {
