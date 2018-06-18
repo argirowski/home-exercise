@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Semos Forms</title>
+	<link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="forms.css">
+</head>
+<body>
+
+	<form class="contact-form" action="https://www.reddit.com/" method="POST" target="_blank">
+		<h2>Place Your Info</h2>
+		<label for="firstName">First Name:
+			<input type="text" name="firstName" id="firstName" placeholder="Your First Name" required>
+		</label>
+		<label for="lastName">Last Name:
+			<input type="text" name="lastName" id="lastName" placeholder="Your Last Name" required>
+		</label>
+
+		<div>
+			<label for="email">Email:
+				<input type="email" name="yourEmail" id="email" placeholder="Your Email Address" required>
+			</label>
+			<label for="telephoneNumber">Telephone Number:
+				<input type="tel" name="telephoneNumber" id="telephoneNumber" placeholder="+389******" required>
+			</label>
+		</div>
+
+		<div>
+			<label for="textMessage">Your Text:
+				<input type="text" name="textMessage" id="textMessage" placeholder="Post Your Text">
+			</label>
+		</div>
+
+		<div>
+			<label for="textArea">Post Your Message: <br>
+				<textarea id="textArea"></textarea>
+			</label>
+		</div>
+
+		<div>
+			<input type="submit" name="submit" class="submit">
+		</div>		
+	</form>
+
+	<form class="hotelRoom" action="https://www.reddit.com/" method="POST" target="_blank">
+		<h2>Book Your Room</h2>
+		<label for="firstName">First Name:
+			<input type="text" name="firstName" id="firstName" placeholder="Your First Name" required>
+		</label>
+		<label for="lastName">Last Name:
+			<input type="text" name="lastName" id="lastName" placeholder="Your Last Name" required>
+		</label>
+
+		<div>
+			<label for="date1">Date of Arrival:
+				<input type="date" name="date1" id="date1">
+			</label>
+			<label for="date2">Date of Departure:
+				<input type="date" name="date2" id="date2">
+			</label>
+		</div>
+
+		<div>
+			<label for="time">Time Of Arrival:
+				<input type="time" name="time" id="time">
+			</label>
+		</div>
+
+		<div>
+			<label for="select">Number of Beds:
+				<select id="select">
+					<option selected>One</option>
+					<option>Two</option>
+					<option>Three</option>
+				</select>
+			</label>
+		</div>
+
+		<div>
+			<label for="accomodation">Type of Accomodation:
+				<input type="radio" name="accomodation" class="accomodation">Room Only
+				<input type="radio" name="accomodation" class="accomodation">Full Package
+				<input type="radio" name="accomodation" class="accomodation">Half Package
+			</label>
+		</div>
+
+		<div>
+			<label for="radio2">Would you like a Mini Bar:
+				<input type="radio" name="radio2" class="radio2"">Yes
+				<input type="radio" name="radio2" class="radio2"">No
+
+			</label>
+		</div>
+
+		<div>
+			<input type="submit" name="submit" class="submit">
+		</div>
+	</form>
+
+</body>
+</html>
