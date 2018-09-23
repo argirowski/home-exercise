@@ -141,7 +141,7 @@ a:hover, a:active {
 /*BUTTONS*/
 /*---------------------------------------*/
 
-.btn:link, .btn:visited {
+.btn:link, .btn:visited, input[type="submit"] {
 	display: inline-block;
 	padding: 10px 30px;
 	font-weight: 300;
@@ -151,7 +151,7 @@ a:hover, a:active {
 	transition: background-color 0.2s, border 0.2s, color 0.2s;
 }
 
-.btn-full:link, .btn-full:visited {
+.btn-full:link, .btn-full:visited, input[type="submit"] {
 	background-color: rgba(230, 126, 34,1.0);
 	color: rgb(255, 255, 255);
 	margin-right: 15px;
@@ -162,12 +162,12 @@ a:hover, a:active {
 	color: rgba(230, 126, 34,1.0);
 }
 
-.btn:hover, .btn:active {
+.btn:hover, .btn:active, input[type="submit"]:hover, input[type="submit"]:active {
 	background-color: rgb(207, 109, 23);
 
 }
 
-.btn-full:hover, .btn-full:active {
+.btn-full:hover, .btn-full:active, input[type="submit"] {
 	border: 1px solid rgba(230, 126, 34,1.0);
 }
 
@@ -384,4 +384,159 @@ cite img {
 	border-radius: 50%;
 	margin-right: 10px;
 	vertical-align: middle;
+}
+
+/*---------------------------------------*/
+/*SIGN UP*/
+/*---------------------------------------*/
+
+.section-plans {
+	background-color: rgb(244, 244, 244);
+}
+
+.plan-box {
+	background-color: rgb(255, 255, 255);
+	border-radius: 5px;
+	width: 90%;
+	margin-left: 5%;
+	box-shadow: 0 2px 2px rgb(240, 240, 240);
+}
+
+.plan-box div {
+	padding: 15px;
+	border-bottom: 1px solid rgb(240, 240, 240);
+}
+
+.plan-price:first-child {
+	background-color: rgb(245, 245, 245);
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.plan-box div:last-child {
+	text-align: center;
+	border: none;
+}
+
+
+.plan-price {
+	font-size: 300%;
+	margin-bottom: 10px;
+	font-weight: 100;
+	color: rgba(230, 126, 34,1.0);
+}
+
+.plan-price span {
+	font-size: 30%;
+	font-weight: 300;
+}
+
+.plan-price-meal {
+	font-size: 80%;
+
+}
+
+.plan-box ul {
+	list-style: none;
+}
+
+.plan-box ul li {
+	padding: 5px 0;
+}
+
+/*---------------------------------------*/
+/*FORM*/
+/*---------------------------------------*/
+
+ .contact-form {
+ 	width: 60%;
+ 	margin: 0 auto;
+ }
+
+ input[type="text"], input[type="email"], select, textarea {
+ 	width: 100%;
+ 	padding: 7px;
+ 	border-radius: 3px;
+ 	border: 1px solid rgb(232, 234, 237);
+ }
+
+ textarea {
+ 	height: 100px;
+ }
+
+ input[type="checkbox"] {
+ 	margin: 10px 5px 10px 0;
+ }
+
+ *:focus {outline: none;}
+
+ /*---------------------------------------*/
+/*FOOTER/
+/*---------------------------------------*/
+
+footer {
+	background-color: rgb(35, 37, 40);
+	padding: 50px;
+	font-size: 80%;
+}
+
+.footer-nav {
+	list-style: none;
+	float: left;
+}
+
+.social-links {
+	list-style: none;
+	float: right;
+}
+
+.footer-nav li, .social-links li {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.footer-nav li:last-child, .social-links li:last:child {
+	margin-right: 0;
+}
+
+.footer-nav li a:link, .footer-nav li a:visited, .social-links li a:link, .social-links li a:visited  {
+	text-decoration: none;
+	border: 0;
+	color: rgb(183, 183, 183);
+	transition: color 0.2s;
+
+}
+
+.footer-nav li a:hover, .footer-nav-li a:active {
+	color: rgb(242, 242, 242);
+}
+
+.social-links li a:link, .social-links li a:visited {
+	font-size: 160%;
+}
+
+.logo-facebook, .logo-twitter, .logo-instagram, .logo-googleplus {
+	transition: color 0.2s;
+}
+
+.logo-facebook:hover {
+	color: rgb(59, 89, 152);
+}
+
+.logo-twitter:hover {
+	color: rgb(85, 172, 238);
+}
+
+.logo-instagram:hover {
+	color: rgb(233, 89, 80);
+}
+
+.logo-googleplus:hover {
+	color: rgb(221, 75, 57);
+}
+
+footer p {
+	color: rgb(183, 183, 183);
+	text-align: center;
+	margin-top: 20px;
 }
