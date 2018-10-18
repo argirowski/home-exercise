@@ -2,8 +2,8 @@ var cv = require("../models/cvs");
 
 // GET Method for All the CV's
 
-var get_all_cvs = (req, res) => {
-    cvs.get_all_cvs((err, data) => {
+var getAllCVs = (req, res) => {
+    cvs.getAllCVs((err, data) => {
         if(err){
             res.status(500).send("Server Error. " + err);
         } else {
@@ -12,37 +12,11 @@ var get_all_cvs = (req, res) => {
     });
 };
 
-// GET Method to look up by Name
-
-var get_cv_by_name = (req, res) => {
-    var cvFirstName = req.params.name;
-    cvs.get_cv_by_name(cvFirstName, (err, data) => {
-        if(err){
-            res.status(500).send("Server Error. " + err);
-        } else {
-            res.send(data);
-        }
-    });
-}
-
-// GET Method to look up by Last Name
-
-var get_cv_by_last_name = (req, res) => {
-    var cvLastName = req.params.name;
-    cvs.get_cv_by_last_name(cvLastName, (err, data) => {
-        if(err){
-            res.status(500).send("Server Error. " + err);
-        } else {
-            res.send(data);
-        }
-    });
-}
-
 // GET Mehod to look up by ID
 
-var get_cv_by_id = (req, res) => {
+var getCVById = (req, res) => {
     var id = req.params.id;
-    cvs.get_cv_by_id(id, (err, data) => {
+    cvs.getCVById(id, (err, data) => {
         if(err){
             res.status(404).send("Cannot find CV !!!!");
         } else {
@@ -53,21 +27,21 @@ var get_cv_by_id = (req, res) => {
 
 // POST Method to create new CV
 
-var create_cv = (req, res) => {
-    cvs.create_cv(req.body, (err) => {
-        if(err) {
-            res.send(err);
+var createCV = (req, res) => {
+    var cvData = formatDates(req.body);
+    cv.addCV(cvData, (err) => {
+        if(err){
+            return res.status(500).send(err);
         } else {
-            res.status(200).send("OK.");
+            return res.send("OK");
         }
     });
 }
-
 // DELETE Method to delete by ID
 
-var delete_cv_by_id = (req, res) => {
+var deleteCVById = (req, res) => {
     var id = req.params.id;
-    cv.delete_cv_by_id(id, (err) => {
+    cv.deleteCVById(id, (err) => {
         if(err){
             res.status(500).send(err)
         } else {
@@ -78,24 +52,51 @@ var delete_cv_by_id = (req, res) => {
 
 // PUT Method to update CV by ID
 
-var update_cv_by_id = (req, res) => {
+var updateCVById = (req, res) => {
+    var cvData = formatDates(req.body);
     var id = req.params.id;
-    var cvData = req.body; //will need to check this later !!!
-    cv.update_cv_by_id(id, cvData, (err) => {
-        if(err){
-            res.status(500).send(err)
+    cv.updateCV(id, cvData, (err) => {
+        if(err) {
+            return res.status(500).send(err);
         } else {
-            res.status(200).send("OK.");
+            return res.send("OK");
         }
     });
 }
 
+// FORMAT DATES CALLBACK
+
+var formatDates = (cvData) => {
+    if(cvData.birth_date != undefined && cvData.birth_date != null){
+        cvData.birth_date = new Date(cvData.birth_date);
+    }
+    if(cvData.education != undefined && cvData.education != null){
+        for(var i = 0; i < cvData.education.length; i++){
+            if(cvData.education[i].start_at != undefined && cvData.education[i].start_at != null){
+                cvData.education[i].start_at = new Date(cvData.education[i].start_at);
+            }
+            if(cvData.education[i].finish_at != undefined && cvData.education[i].finish_at != null){
+                cvData.education[i].finish_at = new Date(cvData.education[i].finish_at);
+            }
+        }
+    }
+    if(cvData.work_experience != undefined && cvData.work_experience != null){
+        for(var i = 0; i < cvData.work_experience.length; i++){
+            if(cvData.work_experience[i].start_at != undefined && cvData.work_experience[i].start_at != null){
+                cvData.work_experience[i].start_at = new Date(cvData.work_experience[i].start_at);
+            }
+            if(cvData.work_experience[i].finish_at != undefined && cvData.work_experience[i].finish_at != null){
+                cvData.work_experience[i].finish_at = new Date(cvData.work_experience[i].finish_at);
+            }
+        }
+    }
+    return cvData;
+}
+
 module.exports = {
-    get_all_cvs,
-    get_cv_by_name,
-    get_cv_by_last_name,
-    get_cv_by_id,
-    create_cv,
-    delete_cv_by_id,
-    update_cv_by_id
+    getAllCVs,
+    getCVById,
+    createCV,
+    deleteCVById,
+    updateCVById
 };

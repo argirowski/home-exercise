@@ -3,63 +3,42 @@ var mongoose = require("mongoose");
 var cvs = mongoose.model(
     'cvs', 
     new mongoose.Schema({
-        "first_name": "",
-        "last_name": "",
-        "birth_date": "",
-        "email": "",
-        "phone": "",
+        "first_name": String,
+        "last_name": String,
+        "birth_date": Date,
+        "email": String,
+        "phone": String,
         "current_residence": {
-            "country": "",
-            "city": "",
-            "zip_code": ""
+            "country": String,
+            "city": String,
+            "zip_code": Number
         },
         "education": [
             {
-             "school_name": "",
-             "level": "",
-             "degree": "",
-             "start_at": "",
-             "finish_at": ""
-            },      
+             "school_name": String,
+             "level": String,
+             "degree": String,
+             "start_at": Date,
+             "finish_at": Date
+            }  
+        ],      
+        "work_experience": [
             {
-             "university_name": "",
-             "level": "",
-             "degree": "",
-             "start_at": "",
-             "finish_at": ""
+                "position": String,
+                "job_description": String,
+                "tags": [String],
+                "company": String,
+                "start_at": Date,
+                "finish_at": Date
             }
-        ],       
+        ]  
        
    })
 );
 
 // GET Method for All the CV's
 
-var get_all_cvs = (cb) => {
-    cvs.find({}, (err, data) => {
-        if(err){
-            return cb(err, null);
-        } else {
-            return cb(null, data);
-        }
-    });
-};
-
-// GET Method to look up by Name
-
-var get_cv_by_name = (cvFirstName, cb) => {
-    cvs.find({}, (err, data) => {
-        if(err){
-            return cb(err, null);
-        } else {
-            return cb(null, data);
-        }
-    });
-};
-
-// GET Method to look up by Last Name
-
-var get_cv_by_last_name = (cvLastName, cb) => {
+var getAllCVs = (cb) => {
     cvs.find({}, (err, data) => {
         if(err){
             return cb(err, null);
@@ -71,8 +50,8 @@ var get_cv_by_last_name = (cvLastName, cb) => {
 
 // GET Mehod to look up by ID
 
-var get_cv_by_id = (id, cb) => {
-    cvs.get_cv_by_id(id, (err, data) => {
+var getCVById = (id, cb) => {
+    cvs.getCVById(id, (err, data) => {
         if(err){
             return cb(err, null);
         } else {
@@ -83,8 +62,8 @@ var get_cv_by_id = (id, cb) => {
 
 // POST Method to create new CV
 
-var create_cv = (cvInfo, cb) => {
-    var cv = new cvs(cvInfo);
+var addCV = (data, cb) => {
+    var cvs = new cvs(data);
     cvs.save((err, data) => {
         if(err) {
             return cb(err);
@@ -96,7 +75,7 @@ var create_cv = (cvInfo, cb) => {
 
 // DELETE Method to delete by ID
 
-var delete_cv_by_id = (id, cb) => {
+var deleteById = (id, cb) => {
     cvs.deleteOne({_id: id}, (err) => {
         if (err) {
             return cb(err);
@@ -108,8 +87,8 @@ var delete_cv_by_id = (id, cb) => {
 
 // PUT Method to update CV by ID
 
-var update_cv_by_id = (id, data, cb) => {
-    cvs.updateOne({_id: id}, data, (err) => {
+var updateCV = (id, data, cb) => {
+    cvs.updateCV({_id: id}, data, (err) => {
         if (err) {
             return cb(err);
         } else {
@@ -119,11 +98,9 @@ var update_cv_by_id = (id, data, cb) => {
 }
 
 module.exports = {
-    get_all_cvs,
-    get_cv_by_name,
-    get_cv_by_last_name,
-    get_cv_by_id,
-    create_cv,
-    delete_cv_by_id,
-    update_cv_by_id
+    getAllCVs,
+    getCVById,
+    addCV,
+    deleteById,
+    updateCV
 }

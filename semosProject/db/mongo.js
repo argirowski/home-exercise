@@ -4,27 +4,16 @@ const options = {
     useNewUrlParser: true
 }
 
-var db = null;
-
 var Init = () => {
-    mongoose.connect('mongodb://127.0.0.1:27017/semos1', options)
-    .then((conn) => {
-        db = conn;
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+   mongoose.connect("mongodb://127.0.0.1:27017/semos1", options)
+   .then((conn) => {
+       console.log("Semos Project Mongo DB Database Successful Connection");
+   })
+   .catch((err) => {
+    console.log(err);
+   });
 };
 
-var DB = () => {
-    if (db != null){
-        return db;
-    } else {
-        console.error("Mongo Data Base Connection Not Found");
-    }
-}
-
 module.exports = {
-    Init,
-    DB
+    Init
 }
