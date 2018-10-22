@@ -1,6 +1,7 @@
 var jobSeekers = require("../models/jobSeekers");
 var bcrypt = require("bcryptjs") //if only bcrypt is installed, delete the -js at the end
-let Validator = require("fastest-validator");
+let validator = require("fastest-validator");
+var utils = require("../utils");
  
 
 // Get all users / job seekers
@@ -35,6 +36,8 @@ var getJobSeekerById = (req, res) => {
     jobSeekers.getJobSeekerById(id, (err, data) => {
         if (err) {
             res.status(404).send("Not Found !!!!");
+        } else {
+            res.send(data);
         }
     });
 };
@@ -48,35 +51,42 @@ var createJobSeeker = (req, res) => {
     // req.body.password != undefined && req.body.password != "";
 
     var schema = {
-        firstname: {type: "string", empty: false},
-        lastname: {type:"string", empty: false},
-        email: {type:"email", empty: false},
-        password: {type:"string", min: 8, max: 16, empty: false}
+        firstname: {type: 'string', empty: false},
+        lastname: {type: 'string', empty: false},
+        email: {type: 'email', empty: false},
+        password: {type: 'string', min: 8, max: 16, empty: false}
     }
 
     let v = new validator();
     var valid = v.validate(req.body, schema);
 
     if (valid === true) {
-        bcrypt.hash(req.body.password, 10, (err, hash) => {
-            var seekerData = req.body;
-            seekerData.password = hash;
-            seekerData.role = "user";
-            jobSeekers.createJobSeeker(seekerData, (err) => {
-                if (err) {
-                    res.send(err);
+        jobSeekers.getJobSeekerByEmail(req.body.email, (err, data) => {
+            if (err) {
+                return res.send(err);
+            } else {
+                if(data == null) {
+                    bcrypt.hash(req.body.password, 10, (err, hash) => {
+                        var seekerData = req.body;
+                        seekerData.password = hash;
+                        seekerData.role = "user";
+                        jobSeekers.createJobSeeker(seekerData, (err) => {
+                            if (err) {
+                                res.send(err);
+                            } else {
+                                res.status(201).send("OK !!!");
+                            }
+                        });
+                    });
                 } else {
-                    res.status(201).send("OK !!!");
+                    res.status(400).send("Bad Request");
                 }
-            });
-        });
-    } else {
-        res.status(400).send("Bad Request");
+            }
+        })
+    }else {
+        res.status(400).send(valid);
     }
-
 }
-
-
 
 // Delete user / job seeker by ID
 

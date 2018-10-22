@@ -1,12 +1,12 @@
 var cvs = require("../models/cvs");
-let Validator = require("fastest-validator");
+var bcrypt = require("bcryptjs") //if only bcrypt is installed, delete the -js at the end
+var utils = require("../utils");
+let validator = require("fastest-validator");
 
 // GET Method for All the CV's
 
 var getAllCVs = (req, res) => {
-    console.log('test 1');
-    cvs.getAllCVs((err, data) => {
-        console.log('test 2');
+      cvs.getAllCVs((err, data) => {
         console.log(err);
         if(err){
             res.status(500).send("Server Error. " + err);
@@ -34,38 +34,65 @@ var getCVById = (req, res) => {
 var createCV = (req, res) => {
 
     var schema = {
-        first_name: { type: 'string', empty: false },
-        last_name: { type: 'string', empty: false },
-        birth_date: { type: "date", empty: false },
-        email: { type: "email", empty: false },
-        phone: { type: "string", empty: false },
-        current_residence: {
-            type: "array", items: {
-                type: "object", props: {
-                    country: { type: "String", empty: false },
-                    city: { type: "String", empty: false },
-                    zip_code: { type: "number", empty: false}
-                }
+        first_name: {type: "string", empty: false},
+        last_name: {type: "string", empty: false},
+        birth_date: {type: "date", empty: false},
+        email: {type: "email", empty: false},
+        phone: {type: "string", empty: false},
+        current_residence: {type: "object", props: {
+            country: {type: "string", empty: false},
+            city: {type: "string", empty: false},
+            zip_code: {type: "number", positive: true, integer: true, empty: false}
+        }},
+        education: {type: "array", items: {
+            type: "object",
+            props: {
+                school_name: {type: "string", empty: false},
+                level: {type: "string", empty: false},
+                degree: {type: "string", empty: false},
+                start_at: {type: "date", empty: false},
+                finish_at: {type: "date", empty: false}
             }
-        },
-        education: {
-            type: "array", items: {
-                type: "object", props {
-                    
-                }
+        }},
+        work_experience: {type: "array", items: {
+            type: "object",
+            props: {
+                position: {type: "string", empty: false},
+                job_description: {type: "string", empty: false},
+                tags: {
+                    type: "array",
+                    items: {type: "string"}
+                },
+                company: {type: "string", empty: false},
+                start_at: {type: "date", empty: false},
+                finish_at: {type: "date", empty: false}
             }
-        }
+        }}
     }
 
-    var cvData = formatDates(req.body);
-    cvs.addCV(cvData, (err) => {
-        if(err){
-            return res.status(500).send(err);
-        } else {
-            return res.send("OK");
-        }
-    });
-}
+    let v = new validator();
+    var valid = v.validate(req.body, schema);
+
+    if(valid === true) {
+        cvs.getCVById(req.body.email, (err, data) => {
+            if(err) {
+                return res.send(err);
+            } else {
+                var cvData = formatDates(req.body);
+                cvs.addCV(cvData, (err) => {
+                    if(err){
+                        return res.status(500).send(err);
+                    } else {
+                        return res.send("OK");
+                    }
+                });
+            }
+            }
+        )};
+    }  
+
+
+
 // DELETE Method to delete by ID
 
 var deleteCVById = (req, res) => {
