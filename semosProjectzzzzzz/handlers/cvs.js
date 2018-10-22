@@ -92,7 +92,6 @@ var createCV = (req, res) => {
     }  
 
 
-
 // DELETE Method to delete by ID
 
 var deleteCVById = (req, res) => {

@@ -1,6 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var jwt = require("express-jwt");
+var fileUpload = require("express-fileupload");
 
 var mongo = require("./db/mongo");
 
@@ -9,6 +10,7 @@ var root = require("./handlers/root");
 var jobSeekers = require("./handlers/jobSeekers");
 var cv = require('./handlers/cvs');
 var companies = require("./handlers/companies");
+var upload = require("./handlers/upload");
 
 mongo.Init();
 
@@ -22,10 +24,16 @@ app.use(jwt({
     }).unless({
         path: [
             { url: '/login', methods: ['POST'] },
-            { url: '/jobseekers', methods: ['POST'] }
+            { url: '/jobseekers', methods: ['POST'] },
+            {url: "/upload", methods: ["POST"]},
         ]
     })
 );
+
+app.use(fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 },
+  }));
+
 // Root, login and logout routes
 
 app.get("/", root);
@@ -58,6 +66,10 @@ app.get("/companies/sector/: sector", companies.getCompanyBySector);
 app.post("/companies", companies.addCompany);
 app.delete("/companies/:id", companies.deleteCompanyById);
 app.put("/companies/:id", companies.updateCompanyById);
+
+// Upload Route
+
+app.post("/upload", upload.uploadFile);
 
 // Token Function
 
