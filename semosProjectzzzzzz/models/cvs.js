@@ -48,10 +48,22 @@ var getAllCVs = (cb) => {
     });
 };
 
-// GET Mehod to look up by ID
+// GET Method to look up by ID
 
 var getCVById = (id, cb) => {
     cvs.getCVById(id, (err, data) => {
+        if(err){
+            return cb(err, null);
+        } else {
+            return cb(null, data);
+        }
+    });
+};
+
+// GET Method to look up by Email
+
+var getCVByEmail = (id, cb) => {
+    cvs.getCVByEmail(id, (err, data) => {
         if(err){
             return cb(err, null);
         } else {
@@ -102,5 +114,6 @@ module.exports = {
     getCVById,
     addCV,
     deleteById,
-    updateCV
+    updateCV,
+    getCVByEmail
 }
