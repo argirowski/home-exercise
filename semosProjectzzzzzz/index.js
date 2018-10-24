@@ -70,6 +70,8 @@ app.put("/companies/:id", companies.updateCompanyById);
 // Upload Route
 
 app.post("/upload", upload.uploadFile);
+app.post('/uploadtext', upload.uploadDocument);
+app.post('/uploadavatar', upload.uploadAvatar);
 
 // Token Function
 

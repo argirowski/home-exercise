@@ -1,7 +1,7 @@
 var jwt = require('jsonwebtoken');
 var jobSeekers = require('../models/jobSeekers');
 var bcrypt = require("bcryptjs"); //if only bcrypt is installed, delete the -js at the end
-let Validator = require("fastest-validator");
+let validator = require("fastest-validator");
 
 var login = (req, res) => {
     jobSeekers.getJobSeekerByEmail(req.body.email, (err, seekerData) => {
