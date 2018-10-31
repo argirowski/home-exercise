@@ -1,4 +1,4 @@
-var cv = require("../models/cvs");
+var cvs = require("../models/cvs");
 
 // GET Method for All the CV's
 
@@ -12,7 +12,7 @@ var getAllCVs = (req, res) => {
     });
 };
 
-// GET Mehod to look up by ID
+// GET Method to look up by ID
 
 var getCVById = (req, res) => {
     var id = req.params.id;
@@ -29,7 +29,7 @@ var getCVById = (req, res) => {
 
 var createCV = (req, res) => {
     var cvData = formatDates(req.body);
-    cv.addCV(cvData, (err) => {
+    cvs.addCV(cvData, (err) => {
         if(err){
             return res.status(500).send(err);
         } else {
@@ -41,7 +41,7 @@ var createCV = (req, res) => {
 
 var deleteCVById = (req, res) => {
     var id = req.params.id;
-    cv.deleteCVById(id, (err) => {
+    cvs.deleteCVById(id, (err) => {
         if(err){
             res.status(500).send(err)
         } else {
@@ -55,7 +55,7 @@ var deleteCVById = (req, res) => {
 var updateCVById = (req, res) => {
     var cvData = formatDates(req.body);
     var id = req.params.id;
-    cv.updateCV(id, cvData, (err) => {
+    cvs.updateCV(id, cvData, (err) => {
         if(err) {
             return res.status(500).send(err);
         } else {

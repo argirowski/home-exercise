@@ -18,13 +18,13 @@ app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(jwt({
-    secret: "argirowski_project"
-}).unless({
-    path: [
-        { url: '/login', methods: ['POST'] },
-        { url: '/jobseekers', methods: ['POST'] }
-    ]
-})
+        secret: "argirowski_project"
+    }).unless({
+        path: [
+            { url: '/login', methods: ['POST'] },
+            { url: '/jobseekers', methods: ['POST'] }
+        ]
+    })
 );
 // Root, login and logout routes
 
@@ -39,7 +39,7 @@ app.get("/jobseekers", jobSeekers.getAllJobSeekers);
 app.get("/jobseekers/name/:name", jobSeekers.getJobSeekerByFirstName);
 app.get("jobseekers/:id", jobSeekers.getJobSeekerById);
 app.post("/jobseekers", jobSeekers.createJobSeeker);
-// app.delete("/jobseekers/:id", jobSeekers.deleJobSeekerById);
+app.delete("/jobseekers/:id", jobSeekers.deleteJobSeekerById);
 app.put("/jobseekers/:id", jobSeekers.updateJobSeekerById);
 
 // CV routes
@@ -62,12 +62,11 @@ app.put("/companies/:id", companies.updateCompanyById);
 // Token Function
 
 app.use(function(err, req, res, next) {
-    if(err.name === "UnauthorisedError") {
+    if(err.name === "UnauthorizedError") {
         res.send("Invalid Token");
     }
 });
 
-app.listen(80);
-
+app.listen(8080);
 
 

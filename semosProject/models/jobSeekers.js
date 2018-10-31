@@ -18,8 +18,8 @@ var jobSeekers = mongoose.model(
 
 // Get all users / job seekers
 
-var getAllJobSeekers = (name, cb) => {
-    jobSeekers.find({}, {password: -1}, (err, data) => {
+var getAllJobSeekers = (cb) => {
+    jobSeekers.find({}, {password: 0}, (err, data) => {
         if(err) {
             return cb(err, null);
         } else {
