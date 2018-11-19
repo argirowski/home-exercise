@@ -6,7 +6,6 @@ export const Poster = (props) => {
             <img
                 src={props.data.img}
                 alt={props.data.movieName}
-                width="200"
             />
         </figure>
     )

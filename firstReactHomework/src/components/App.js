@@ -1,5 +1,4 @@
 import React from "react";
-import './App.css';
 import poster from "../assets/img/casino.jpg";
 import { List } from "./List";
 

@@ -1,3 +1,27 @@
-/* .actor-list {
-    font-size: 200px;
-} */
+h2 {
+    font-size: 3em;
+    color: brown;
+}
+
+p {
+    width: 50%;
+}
+
+ul {
+    padding: 0;
+}
+
+.actor-list li {
+    list-style: none;
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
+
+.movie-poster {
+    margin-left: 0;
+}
+
+.movie-poster img {
+    width: 200px;
+}
+

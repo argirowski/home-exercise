@@ -1,5 +1,6 @@
 import React from "react";
 import { Poster } from "./Poster";
+import './App.css';
 
 export const MovieInfo = (props) => {
     return (
