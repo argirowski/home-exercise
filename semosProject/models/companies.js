@@ -19,6 +19,8 @@ var Companies = mongoose.model(
     })
 );
 
+// GET Method for All the Companies
+
 var getAllCompanies = (cb) => {
     Companies.find({}, (err, data) => {
         if(err) {
@@ -28,6 +30,8 @@ var getAllCompanies = (cb) => {
         }
     });
 };
+
+// GET Mehod to look up by Sector
 
 var getCompanyBySector = (sector, cb) => {
     Companies.find({company_sector: sector}, (err, data) => { 
@@ -39,6 +43,8 @@ var getCompanyBySector = (sector, cb) => {
     })
 }
 
+// GET Mehod to look up by Company Name
+
 var getCompanyByName = (name, cb) => {
     Companies.find({company_name: name}, (err, data) => {
         if(err) {
@@ -48,6 +54,8 @@ var getCompanyByName = (name, cb) => {
         }
     })
 }
+
+// POST Method to add a new Company
 
 var addCompany = (companyData, cb) => {
     var company = new Companies(companyData);
@@ -60,6 +68,8 @@ var addCompany = (companyData, cb) => {
     });
 }
 
+// DELETE Method to delete Company by ID
+
 var deleteCompanyById = (id, cb) => {
     Companies.deleteOne({_id: id}, data, (err) => {
         if(err) {
@@ -69,6 +79,8 @@ var deleteCompanyById = (id, cb) => {
         }
     })
 }
+
+// PUT Method to update Company by ID
 
 var updateCompanyById = (id, data, cb) => {
     Companies.updateOne({_id: id}, data, (err) => {

@@ -18,7 +18,7 @@ var getCVById = (req, res) => {
     var id = req.params.id;
     cvs.getCVById(id, (err, data) => {
         if(err){
-            res.status(404).send("Cannot find CV !!!!");
+            res.status(500).send(err);
         } else {
             res.send(data);
         }

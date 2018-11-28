@@ -1,5 +1,7 @@
 var companies = require("../models/companies");
 
+// GET Method for All the Companies
+
 var getAllCompanies = (req, res) => {
     companies.getAllCompanies((err, data) => {
         if(err){
@@ -9,6 +11,8 @@ var getAllCompanies = (req, res) => {
         }
     });
 };
+
+// GET Method to look up by Company Name
 
 var getCompanyByName = (req, res) => {
     var name = req.params.name;
@@ -21,6 +25,8 @@ var getCompanyByName = (req, res) => {
     });
 };
 
+// GET Method to look up by Sector
+
 var getCompanyBySector = (req, res) => {
     var sector = req.params.sector;
     companies.getCompanyBySector(sector, (err, data) => {
@@ -32,6 +38,8 @@ var getCompanyBySector = (req, res) => {
     });
 };
 
+// POST Method to create new Company
+
 var addCompany = (req, res) => {
     companies.addCompany(req.body, (err) => {
         if(err) {
@@ -41,6 +49,8 @@ var addCompany = (req, res) => {
         }
     });
 };
+
+// DELETE Method to delete company by ID
 
 var deleteCompanyById = (req, res) => {
     var id = req.params.id;
@@ -52,6 +62,8 @@ var deleteCompanyById = (req, res) => {
         }
     });
 };
+
+// PUT Method to update Company by ID
 
 var updateCompanyById = (req, res) => {
     var id = id;
