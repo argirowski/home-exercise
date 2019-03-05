@@ -1,0 +1,64 @@
+body {
+    background-color: rgb(178, 167, 204);
+    font-family: 'Nunito', sans-serif;
+    max-width: 1290px;
+}
+
+#main-navbar .navbar-brand {
+    color: rgb(238, 15, 15);
+    font-size: 1.5rem;
+}
+
+#main-navbar {
+    font-size: 1.5rem;
+    font-weight: 100;
+}
+
+#main-navbar .nav-link {
+    color: white;
+}
+
+#main-navbar .nav-link:hover {
+    color: rgb(238, 15, 15);
+}
+
+#heading-group h1 {
+    font-weight: 100;
+    font-size:2.5rem;
+}
+
+@media (max-width: 1200px) {
+    #heading-group h1 {
+        font-weight: 100;
+        font-size:2rem;
+    }    
+}
+
+.mountain-icon {
+    width: 150px;
+    height: auto;
+}
+
+.text-div h2 {
+    color: rgb(238, 15, 15);
+    font-weight: 100;
+    font-size: 2.5rem;
+}
+
+.text-div p {
+    color: saddlebrown;
+    font-weight: 100;
+    font-size: 1.125rem;
+    line-height: 1.7;
+}
+
+.content {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.navbar.scrolled {
+    background-color: darkgoldenrod;
+    transition: background 400ms;
+}
+
