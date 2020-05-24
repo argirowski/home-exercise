@@ -1,0 +1,7 @@
+C:\Users\Argirowski\source\repos\CodingExercises\CodingExercises\bin\Debug\CodingExercises.exe.config
+C:\Users\Argirowski\source\repos\CodingExercises\CodingExercises\bin\Debug\CodingExercises.exe
+C:\Users\Argirowski\source\repos\CodingExercises\CodingExercises\bin\Debug\CodingExercises.pdb
+C:\Users\Argirowski\source\repos\CodingExercises\CodingExercises\obj\Debug\CodingExercises.csprojAssemblyReference.cache
+C:\Users\Argirowski\source\repos\CodingExercises\CodingExercises\obj\Debug\CodingExercises.csproj.CoreCompileInputs.cache
+C:\Users\Argirowski\source\repos\CodingExercises\CodingExercises\obj\Debug\CodingExercises.exe
+C:\Users\Argirowski\source\repos\CodingExercises\CodingExercises\obj\Debug\CodingExercises.pdb
