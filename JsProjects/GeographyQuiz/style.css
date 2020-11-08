@@ -65,6 +65,6 @@ button:hover {
 }
 
 button:focus {
-  background-color: ;
+  background-color: slateblue;
   outline: none;
 }
